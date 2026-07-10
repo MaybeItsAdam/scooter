@@ -71,6 +71,7 @@ When Scoot is in the foreground:
     * The equivalent vi bindings are also (optionally) available; see [keybindings](#keybindings) for details.
 
 * You can click with the left mouse button (at the current cursor location) by hitting the Return (↵) key.
+  * If preferred, this can be made automatic after each cursor snap (configured separately for element, grid, and freestyle modes in Preferences).
 
 * You can hold the left mouse button down by pressing `=`. (To release the button, press ↵.)
   * To perform a drag-and-drop operation: situate the cursor above the object you want to drag and press `=`, then move the mouse cursor to the desired drag destination (using one or more of the mechanisms that Scoot makes available), and then press ↵ to perform the drop.
