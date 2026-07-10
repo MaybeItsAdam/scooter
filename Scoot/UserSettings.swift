@@ -32,6 +32,9 @@ class UserSettings {
 
         struct Names {
             static let keybindingMode = "KeybindingMode"
+            static let clickOnSnapInElementMode = "ClickOnSnapInElementMode"
+            static let clickOnSnapInGridMode = "ClickOnSnapInGridMode"
+            static let clickOnSnapInFreestyleMode = "ClickOnSnapInFreestyleMode"
             static let primaryColor = "PrimaryColor"
             static let secondaryColor = "SecondaryColor"
             static let showGridLines = "ShowGridLines"
@@ -45,6 +48,9 @@ class UserSettings {
 
         struct DefaultValues {
             static let keybindingMode = KeybindingMode.emacs
+            static let clickOnSnapInElementMode = false
+            static let clickOnSnapInGridMode = false
+            static let clickOnSnapInFreestyleMode = false
             static let primaryColor = Color("PrimaryColor")     // References a named color in Asset Bundle.
             static let secondaryColor = Color("SecondaryColor") // Ditto.
             static let showGridLines = true
@@ -89,6 +95,33 @@ class UserSettings {
         }
         set {
             settingsView?.keybindingMode = newValue
+        }
+    }
+
+    var clickOnSnapInElementMode: Bool {
+        get {
+            settingsView?.clickOnSnapInElementMode ?? Constants.DefaultValues.clickOnSnapInElementMode
+        }
+        set {
+            settingsView?.clickOnSnapInElementMode = newValue
+        }
+    }
+
+    var clickOnSnapInGridMode: Bool {
+        get {
+            settingsView?.clickOnSnapInGridMode ?? Constants.DefaultValues.clickOnSnapInGridMode
+        }
+        set {
+            settingsView?.clickOnSnapInGridMode = newValue
+        }
+    }
+
+    var clickOnSnapInFreestyleMode: Bool {
+        get {
+            settingsView?.clickOnSnapInFreestyleMode ?? Constants.DefaultValues.clickOnSnapInFreestyleMode
+        }
+        set {
+            settingsView?.clickOnSnapInFreestyleMode = newValue
         }
     }
 

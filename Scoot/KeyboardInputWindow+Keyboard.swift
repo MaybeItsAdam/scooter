@@ -47,6 +47,10 @@ extension KeyboardInputWindow {
                 if nextNode.isLeaf , let rect = nextNode.value {
                     mouse.move(to: CGPoint(x: rect.midX, y: rect.midY))
                     flashFeedback(at: rect, duration: 1.4)
+                    if shouldClickAfterSnap && !isHoldingDownLeftMouseButton {
+                        appDelegate?.bringToBackground()
+                        mouse.click(button: .left)
+                    }
                     currentNode = nil
                     return
                 }

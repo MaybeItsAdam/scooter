@@ -32,6 +32,17 @@ class KeyboardInputWindow: TransparentWindow {
     /// The decision tree enabling element-based navigation.
     var treeForElementBasedNavigation: Tree<CGRect>!
 
+    var shouldClickAfterSnap: Bool {
+        switch activeJumpMode {
+        case .element:
+            return UserSettings.shared.clickOnSnapInElementMode
+        case .grid:
+            return UserSettings.shared.clickOnSnapInGridMode
+        case .freestyle:
+            return UserSettings.shared.clickOnSnapInFreestyleMode
+        }
+    }
+
     /// The underlying data structure enabling cursor movement via a
     /// character-based decision tree (as determined by the active jump mode).
     var currentTree: Tree<CGRect>? {

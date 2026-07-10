@@ -12,6 +12,15 @@ struct SettingsView: View {
     @AppStorage(UserSettings.Constants.Names.keybindingMode)
     var keybindingMode = UserSettings.Constants.DefaultValues.keybindingMode
 
+    @AppStorage(UserSettings.Constants.Names.clickOnSnapInElementMode)
+    var clickOnSnapInElementMode = UserSettings.Constants.DefaultValues.clickOnSnapInElementMode
+
+    @AppStorage(UserSettings.Constants.Names.clickOnSnapInGridMode)
+    var clickOnSnapInGridMode = UserSettings.Constants.DefaultValues.clickOnSnapInGridMode
+
+    @AppStorage(UserSettings.Constants.Names.clickOnSnapInFreestyleMode)
+    var clickOnSnapInFreestyleMode = UserSettings.Constants.DefaultValues.clickOnSnapInFreestyleMode
+
     @AppStorage(UserSettings.Constants.Names.primaryColor)
     var primaryColor = UserSettings.Constants.DefaultValues.primaryColor
 
@@ -48,7 +57,12 @@ struct SettingsView: View {
 
     var body: some View {
         TabView {
-            KeybindingsSettingsView(keybindingMode: $keybindingMode)
+            KeybindingsSettingsView(
+                keybindingMode: $keybindingMode,
+                clickOnSnapInElementMode: $clickOnSnapInElementMode,
+                clickOnSnapInGridMode: $clickOnSnapInGridMode,
+                clickOnSnapInFreestyleMode: $clickOnSnapInFreestyleMode
+            )
                 .tabItem {
                     Label("Keybindings", systemImage: "keyboard")
                 }
@@ -82,6 +96,9 @@ struct SettingsView_Previews: PreviewProvider {
 struct KeybindingsSettingsView: View {
 
     @Binding var keybindingMode: KeybindingMode
+    @Binding var clickOnSnapInElementMode: Bool
+    @Binding var clickOnSnapInGridMode: Bool
+    @Binding var clickOnSnapInFreestyleMode: Bool
 
     var body: some View {
         Form {
@@ -100,6 +117,9 @@ struct KeybindingsSettingsView: View {
             KeyboardShortcuts.Recorder(for: .useElementBasedNavigation).formLabel(Text("Element-Based Navigation:"))
             KeyboardShortcuts.Recorder(for: .useGridBasedNavigation).formLabel(Text("Grid-Based Navigation:"))
             KeyboardShortcuts.Recorder(for: .useFreestyleNavigation).formLabel(Text("Freestyle Navigation:"))
+            Toggle("Auto-click after snap (Element mode)", isOn: $clickOnSnapInElementMode)
+            Toggle("Auto-click after snap (Grid mode)", isOn: $clickOnSnapInGridMode)
+            Toggle("Auto-click after snap (Freestyle mode)", isOn: $clickOnSnapInFreestyleMode)
 //            Spacer()
 //                .frame(height: 40)
 //            Button("Restore Defaults", action: restoreDefaultsAction).formLabel(Text("Reset:"))
@@ -121,7 +141,12 @@ struct KeybindingsSettingsView: View {
 
 struct KeybindingsSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        KeybindingsSettingsView(keybindingMode: .constant(.emacs))
+        KeybindingsSettingsView(
+            keybindingMode: .constant(.emacs),
+            clickOnSnapInElementMode: .constant(false),
+            clickOnSnapInGridMode: .constant(false),
+            clickOnSnapInFreestyleMode: .constant(false)
+        )
     }
 }
 
